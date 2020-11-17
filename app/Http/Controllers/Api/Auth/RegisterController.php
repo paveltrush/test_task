@@ -25,6 +25,6 @@ class RegisterController extends BaseController
 
         $userService->store($name, $email, $password);
 
-        return $this->sendResponse([], "Tasks was transferred successfully");
+        return $this->sendResponse([], "You are registered successfully");
     }
 }

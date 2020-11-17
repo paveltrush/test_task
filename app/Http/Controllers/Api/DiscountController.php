@@ -31,7 +31,7 @@ class DiscountController extends BaseController
     {
         $discount_id = $request->get('discount_id');
 
-        $discounts = $this->discountService->getDiscounts($discount_id)->toArray(); dd($discounts);
+        $discounts = $this->discountService->getDiscounts($discount_id)->toArray();
 
         return $this->sendResponse($discounts);
     }
