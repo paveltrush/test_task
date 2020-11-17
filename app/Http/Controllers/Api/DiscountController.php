@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\DiscountService;
 use Illuminate\Http\Request;
 
-class DiscountController extends Controller
+class DiscountController extends BaseController
 {
     /**
      * @var DiscountService
@@ -16,5 +16,14 @@ class DiscountController extends Controller
     public function __construct()
     {
         $this->discountService = new DiscountService();
+    }
+
+    public function getExpiringDiscounts(Request $request)
+    {
+        $days = $request->get('days');
+
+        $expiringDiscounts = $this->discountService->getExpiringDiscounts($days)->toArray();
+
+        return $this->sendResponse($expiringDiscounts);
     }
 }

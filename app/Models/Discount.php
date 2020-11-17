@@ -24,6 +24,8 @@ class Discount extends Model
         'name'
     ];
 
+    protected $hidden = ['pivot'];
+
     public function clients()
     {
         return $this->belongsToMany(Client::class, 'client_discount');

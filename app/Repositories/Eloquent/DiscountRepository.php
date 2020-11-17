@@ -5,7 +5,6 @@ namespace App\Repositories\Eloquent;
 
 
 use App\Models\Discount;
-use Illuminate\Database\Eloquent\Model;
 
 class DiscountRepository extends BaseRepository
 {
@@ -14,8 +13,12 @@ class DiscountRepository extends BaseRepository
         parent::__construct(new Discount());
     }
 
-    public function getClientDiscountsByPhone(string $phone)
+    public function getByExpiringDays($days)
     {
-        return '';
+        $now = now()->format('Y-m-d');
+
+        return $this->model->whereBetween('date_active_to', [$now, $days])
+            ->with('clients:id')
+            ->get();
     }
 }

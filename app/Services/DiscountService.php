@@ -17,8 +17,10 @@ class DiscountService
         $this->discoutRepository = new DiscountRepository();
     }
 
-    public function getClientDiscountsByPhone($phone)
+    public function getExpiringDiscounts($days)
     {
-        return $this->discoutRepository->getClientDiscountsByPhone($phone);
+        $days = now()->addDays($days)->format('Y-m-d');
+
+        return $this->discoutRepository->getByExpiringDays($days);
     }
 }

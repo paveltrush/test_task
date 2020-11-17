@@ -27,6 +27,8 @@ class Client extends Model
         'personal_phone'
     ];
 
+    protected $hidden = ['pivot'];
+
     public function discounts()
     {
         return $this->belongsToMany(Discount::class, 'client_discount');
