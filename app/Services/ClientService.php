@@ -21,8 +21,8 @@ class ClientService
 
     public function getClientByRegisterPeriod($date_from, $date_to)
     {
-        $date_from = date($date_from);
-        $date_to = date($date_to);
+        $date_from = date('Y-m-d H:i:s', strtotime($date_from));
+        $date_to = date('Y-m-d H:i:s', strtotime($date_to));
 
         return $this->clientRepository->getByRegisterInterval($date_from, $date_to);
     }

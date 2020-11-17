@@ -21,14 +21,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'App\Http\Controllers\Api'], function () {
     Route::group(['namespace' => 'Auth'], function () {
         Route::post('register', 'RegisterController');
-        Route::post('login', 'LoginController');
-//        Route::post('logout', 'LogoutController')->middleware('auth:api');
+        Route::post('login', 'LoginController')->name('login');
     });
 
-    Route::get('matrix/GetAccountUsers', 'ClientController@getAccountUsers');
-    Route::get('matrix/GetAccountDiscountsByPhone', 'ClientController@getAccountDiscountsByPhone');
-    Route::get('matrix/GetAccountDiscounts', 'ClientController@getAccountDiscounts');
+    Route::group(['prefix' => 'matrix', 'middleware' => 'auth:api'], function () {
+        Route::get('GetAccountUsers', 'ClientController@getAccountUsers');
+        Route::get('GetAccountDiscountsByPhone', 'ClientController@getAccountDiscountsByPhone');
+        Route::get('GetAccountDiscounts', 'ClientController@getAccountDiscounts');
 
-    Route::get('matrix/GetExpiringDiscounts', 'DiscountController@getExpiringDiscounts');
-    Route::get('matrix/GetAllDiscounts', 'DiscountController@getAllDiscounts');
+        Route::get('GetExpiringDiscounts', 'DiscountController@getExpiringDiscounts');
+        Route::get('GetAllDiscounts', 'DiscountController@getAllDiscounts');
+    });
 });

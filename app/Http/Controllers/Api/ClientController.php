@@ -22,7 +22,7 @@ class ClientController extends BaseController
         $date_from = $request->get('date_from');
         $date_to = $request->get('date_to');
 
-        $clients = $this->clientService->getClientByRegisterPeriod($date_from, $date_to);
+        $clients = $this->clientService->getClientByRegisterPeriod($date_from, $date_to); dd($clients);
 
         return $this->sendResponse($clients);
     }

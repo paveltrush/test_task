@@ -16,26 +16,21 @@ class ClientRepository extends BaseRepository
     public function getByRegisterInterval($date_from, $date_to)
     {
         return $this->model->whereBetween('date_register', [$date_from, $date_to])
-            ->with('discounts')
+            ->with('clientDiscounts')
             ->get();
     }
 
     public function getClientDiscountsByPhone($phone)
     {
         return $this->model->where('personal_phone', '=', $phone)
-            ->leftJoin('client_discount', 'client_discount.client_id', '=', 'clients.id', function ($query) {
-                return $query->select('id', 'date_activation as date');
-            })
+            ->with('clientDiscounts')
             ->get();
     }
 
-    public function getDiscountsById($client_id)
+    public function getDiscountsById($id)
     {
-        return $this->model->where('clients.id', '=', $client_id)
-            ->join('client_discount', function ($query) {
-                $query->on('client_discount.client_id', '=', 'clients.id');
-            })
-            //->selectSub('client_discount.id', 'client_discount.date_activation')
+        return $this->model->where('id', '=', $id)
+            ->with('clientDiscounts')
             ->get();
     }
 

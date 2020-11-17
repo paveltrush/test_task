@@ -34,7 +34,7 @@ class ClientController extends TestCase
 
         $data = ['date_from' => $dateFrom, 'date_to' => $dateTo];
 
-        $this->json('GET', '/api/GetAccountUsers', $data)
+        $this->json('GET', '/api/matrix/GetAccountUsers', $data)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [

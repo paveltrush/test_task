@@ -33,4 +33,9 @@ class Client extends Model
     {
         return $this->belongsToMany(Discount::class, 'client_discount');
     }
+
+    public function clientDiscounts()
+    {
+        return $this->hasMany(ClientDiscount::class);
+    }
 }
