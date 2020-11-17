@@ -26,4 +26,9 @@ class ClientService
 
         return $this->clientRepository->getByRegisterInterval($date_from, $date_to);
     }
+
+    public function getClientDiscountsByPhone($phone)
+    {
+        return $this->clientRepository->getClientDiscountsByPhone($phone);
+    }
 }

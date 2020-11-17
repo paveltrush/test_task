@@ -20,5 +20,14 @@ class ClientRepository extends BaseRepository
             ->get();
     }
 
+    public function getClientDiscountsByPhone($phone)
+    {
+        return $this->model->where('personal_phone', '=', $phone)
+            ->leftJoin('client_discount', 'client_discount.client_id', '=', 'clients.id', function ($query) {
+                return $query->select('id', 'date_activation as date');
+            })
+            ->get();
+    }
+
 
 }

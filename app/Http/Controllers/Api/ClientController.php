@@ -26,4 +26,11 @@ class ClientController extends BaseController
 
         return $this->sendResponse($clients);
     }
+
+    public function getAccountDiscountsByPhone(Request $request)
+    {
+        $phone = $request->get('user_phone');
+
+        $clientDiscounts = $this->clientService->getClientDiscountsByPhone($phone); dd($clientDiscounts);
+    }
 }
