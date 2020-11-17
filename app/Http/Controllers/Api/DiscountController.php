@@ -26,4 +26,13 @@ class DiscountController extends BaseController
 
         return $this->sendResponse($expiringDiscounts);
     }
+
+    public function getAllDiscounts(Request $request)
+    {
+        $discount_id = $request->get('discount_id');
+
+        $discounts = $this->discountService->getDiscounts($discount_id)->toArray(); dd($discounts);
+
+        return $this->sendResponse($discounts);
+    }
 }

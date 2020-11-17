@@ -23,4 +23,13 @@ class DiscountService
 
         return $this->discoutRepository->getByExpiringDays($days);
     }
+
+    public function getDiscounts($discount_id = null)
+    {
+        if(empty($discount_id)){
+            return $this->discoutRepository->getAll();
+        }
+
+        return $this->discoutRepository->getById($discount_id);
+    }
 }

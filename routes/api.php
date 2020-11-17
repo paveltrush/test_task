@@ -30,4 +30,5 @@ Route::group(['namespace' => 'App\Http\Controllers\Api'], function () {
     Route::get('matrix/GetAccountDiscounts', 'ClientController@getAccountDiscounts');
 
     Route::get('matrix/GetExpiringDiscounts', 'DiscountController@getExpiringDiscounts');
+    Route::get('matrix/GetAllDiscounts', 'DiscountController@getAllDiscounts');
 });
