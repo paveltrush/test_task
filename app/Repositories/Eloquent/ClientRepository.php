@@ -29,5 +29,15 @@ class ClientRepository extends BaseRepository
             ->get();
     }
 
+    public function getDiscountsById($client_id)
+    {
+        return $this->model->where('clients.id', '=', $client_id)
+            ->join('client_discount', function ($query) {
+                $query->on('client_discount.client_id', '=', 'clients.id');
+            })
+            //->selectSub('client_discount.id', 'client_discount.date_activation')
+            ->get();
+    }
+
 
 }

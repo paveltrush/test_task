@@ -31,4 +31,9 @@ class ClientService
     {
         return $this->clientRepository->getClientDiscountsByPhone($phone);
     }
+
+    public function getClientDiscountsByClient($client_id)
+    {
+        return $this->clientRepository->getDiscountsById($client_id);
+    }
 }
