@@ -28,7 +28,7 @@ class ClientFactory extends Factory
             'last_name' => $this->faker->lastName,
             'personal_mobile' => $this->faker->numerify('7##########'),
             'personal_phone' => $this->faker->numerify('7##########'),
-            'date_register' => now(),
+            'date_register' => now()->subDays(rand(1,5)),
             'last_login' => now()
         ];
     }
