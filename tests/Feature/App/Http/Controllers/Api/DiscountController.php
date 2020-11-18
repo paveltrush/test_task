@@ -11,7 +11,7 @@ use Tests\TestCase;
 class DiscountController extends TestCase
 {
     /**
-     * A basic feature test example.
+     * Method checks if route not found.
      *
      * @return void
      */
@@ -19,12 +19,12 @@ class DiscountController extends TestCase
     {
         $data = ['days' => 5];
 
-        $this->json('GET', '/api/GetExpiringDiscounts', $data)
+        $this->json('POST', '/api/GetExpiringDiscounts', $data)
             ->assertStatus(404);
     }
 
     /**
-     * A basic feature test example.
+     * Method supposed to return successfully result with not empty value.
      *
      * @return void
      */
@@ -37,7 +37,7 @@ class DiscountController extends TestCase
 
         $data = ['days' => $days];
 
-        $this->json('GET', '/api/GetExpiringDiscounts', $data)
+        $this->json('POST', '/api/GetExpiringDiscounts', $data)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
@@ -56,7 +56,7 @@ class DiscountController extends TestCase
 
 
     /**
-     * A basic feature test example.
+     * Method supposed to return successfully result with empty value.
      *
      * @return void
      */
@@ -64,7 +64,7 @@ class DiscountController extends TestCase
     {
         $data = ['days' => 0];
 
-        $this->json('GET', '/api/GetExpiringDiscounts', $data)
+        $this->json('POST', '/api/GetExpiringDiscounts', $data)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => []
@@ -72,24 +72,24 @@ class DiscountController extends TestCase
     }
 
     /**
-     * A basic feature test example.
+     * Method checks if route not found.
      *
      * @return void
      */
     public function testGetAllDiscountsNotFound()
     {
-        $this->json('GET', '/api/GetUsers', null)
+        $this->json('POST', '/api/GetUsers', null)
             ->assertStatus(404);
     }
 
     /**
-     * A basic feature test example.
+     *  Method checks the script to work when the value is empty.
      *
      * @return void
      */
     public function testGetAllDiscountsWithEmptyParameterSuccessfully()
     {
-        $this->json('GET', '/api/GetAllDiscounts', null)
+        $this->json('POST', '/api/GetAllDiscounts', null)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
@@ -110,7 +110,7 @@ class DiscountController extends TestCase
 
 
     /**
-     * A basic feature test example.
+     * Method checks the script to work when the value is not empty.
      *
      * @return void
      */
@@ -120,7 +120,7 @@ class DiscountController extends TestCase
 
         $data = ['discount_id' => $discountId];
 
-        $this->json('GET', '/api/GetAllDiscounts', $data)
+        $this->json('POST', '/api/GetAllDiscounts', $data)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [

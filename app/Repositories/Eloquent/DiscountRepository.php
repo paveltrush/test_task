@@ -5,15 +5,24 @@ namespace App\Repositories\Eloquent;
 
 
 use App\Models\Discount;
+use Illuminate\Database\Eloquent\Collection;
 
 class DiscountRepository extends BaseRepository
 {
+    /**
+     * DiscountRepository constructor.
+     */
     public function __construct()
     {
         parent::__construct(new Discount());
     }
 
-    public function getByExpiringDays($days)
+    /**
+     * Get discounts with clients id by expiring days.
+     * @param $days
+     * @return Collection
+     */
+    public function getByExpiringDays($days): Collection
     {
         $now = now()->format('Y-m-d');
 
@@ -22,12 +31,21 @@ class DiscountRepository extends BaseRepository
             ->get();
     }
 
-    public function getById($id)
+    /**
+     * Get discounts by discount id.
+     * @param $id
+     * @return Collection
+     */
+    public function getById($id): Collection
     {
         return $this->model->find($id);
     }
 
-    public function getAll()
+    /**
+     * Get all available discounts.
+     * @return Collection
+     */
+    public function getAll(): Collection
     {
         return $this->model->all();
     }

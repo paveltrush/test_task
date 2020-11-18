@@ -10,7 +10,7 @@ use Tests\TestCase;
 class ClientController extends TestCase
 {
     /**
-     * A basic feature test example.
+     * Method checks if route not found.
      *
      * @return void
      */
@@ -18,12 +18,12 @@ class ClientController extends TestCase
     {
         $data = ['date_from' => '26.06.2019', 'date_to' => '27.06.2019'];
 
-        $this->json('GET', '/api/GetUsers', $data)
+        $this->json('POST', '/api/GetUsers', $data)
             ->assertStatus(404);
     }
 
     /**
-     * A basic feature test example.
+     * Method supposed to return successfully result with not empty value
      *
      * @return void
      */
@@ -34,7 +34,7 @@ class ClientController extends TestCase
 
         $data = ['date_from' => $dateFrom, 'date_to' => $dateTo];
 
-        $this->json('GET', '/api/matrix/GetAccountUsers', $data)
+        $this->json('POST', '/api/matrix/GetAccountUsers', $data)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
@@ -55,7 +55,7 @@ class ClientController extends TestCase
 
 
     /**
-     * A basic feature test example.
+     * Method supposed to return successfully result with empty value
      *
      * @return void
      */
@@ -63,7 +63,7 @@ class ClientController extends TestCase
     {
         $data = ['date_from' => '26.06.2019', 'date_to' => '27.06.2019'];
 
-        $this->json('GET', '/api/GetAccountUsers', $data)
+        $this->json('POST', '/api/GetAccountUsers', $data)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => []
@@ -71,7 +71,7 @@ class ClientController extends TestCase
     }
 
     /**
-     * A basic feature test example.
+     * Method checks if route not found.
      *
      * @return void
      */
@@ -79,12 +79,12 @@ class ClientController extends TestCase
     {
         $data = ['user_phone' => '72942958613'];
 
-        $this->json('GET', '/api/GetAccountDiscountsPhone', $data)
+        $this->json('POST', '/api/GetAccountDiscountsPhone', $data)
             ->assertStatus(404);
     }
 
     /**
-     * A basic feature test example.
+     * Method supposed to return successfully result with not empty data
      *
      * @return void
      */
@@ -94,7 +94,7 @@ class ClientController extends TestCase
 
         $data = ['user_phone' => $user_phone];
 
-        $this->json('GET', '/api/GetAccountDiscountsByPhone', $data)
+        $this->json('POST', '/api/GetAccountDiscountsByPhone', $data)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
@@ -115,7 +115,7 @@ class ClientController extends TestCase
 
 
     /**
-     * A basic feature test example.
+     * Method supposed to return successfully result with empty value.
      *
      * @return void
      */
@@ -123,7 +123,7 @@ class ClientController extends TestCase
     {
         $data = ['user_phone' => '70000000000'];
 
-        $this->json('GET', '/api/GetAccountDiscountsByPhone', $data)
+        $this->json('POST', '/api/GetAccountDiscountsByPhone', $data)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => []
@@ -131,7 +131,7 @@ class ClientController extends TestCase
     }
 
     /**
-     * A basic feature test example.
+     * Method checks if route not found.
      *
      * @return void
      */
@@ -139,12 +139,12 @@ class ClientController extends TestCase
     {
         $data = ['user_id' => null];
 
-        $this->json('GET', '/api/GetAccountDiscountByClient', $data)
+        $this->json('POST', '/api/GetAccountDiscountByClient', $data)
             ->assertStatus(404);
     }
 
     /**
-     * A basic feature test example.
+     * Method supposed to return successfully result with not empty data.
      *
      * @return void
      */
@@ -154,7 +154,7 @@ class ClientController extends TestCase
 
         $data = ['user_id' => $user_id];
 
-        $this->json('GET', '/api/GetAccountDiscounts', $data)
+        $this->json('POST', '/api/GetAccountDiscounts', $data)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
@@ -175,7 +175,7 @@ class ClientController extends TestCase
 
 
     /**
-     * A basic feature test example.
+     * Method supposed to return successfully result with empty value.
      *
      * @return void
      */
@@ -183,7 +183,7 @@ class ClientController extends TestCase
     {
         $data = ['user_id' => null];
 
-        $this->json('GET', '/api/GetAccountDiscounts', $data)
+        $this->json('POST', '/api/GetAccountDiscounts', $data)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => []

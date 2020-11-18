@@ -43,4 +43,15 @@ class BaseRepository
     {
         return $this->model->all()->where($key, $operator, $value);
     }
+
+    /**
+     * @param $key
+     * @param string $operator
+     * @param $value
+     * @return Collection
+     */
+    protected function where($key, string $operator, $value): Collection
+    {
+        return $this->model->where($key, $operator, $value);
+    }
 }

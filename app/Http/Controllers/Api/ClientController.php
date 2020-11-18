@@ -12,21 +12,34 @@ class ClientController extends BaseController
      */
     private $clientService;
 
+    /**
+     * ClientController constructor.
+     */
     public function __construct()
     {
         $this->clientService = new ClientService();
     }
 
+    /**
+     * Method returns registered customers for a period of time.
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getAccountUsers(Request $request)
     {
         $date_from = $request->get('date_from');
         $date_to = $request->get('date_to');
 
-        $clients = $this->clientService->getClientByRegisterPeriod($date_from, $date_to); dd($clients);
+        $clients = $this->clientService->getClientByRegisterPeriod($date_from, $date_to);
 
         return $this->sendResponse($clients);
     }
 
+    /**
+     * Method returns all active customer discounts by client phone.
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getAccountDiscountsByPhone(Request $request)
     {
         $phone = $request->get('user_phone');
@@ -36,6 +49,11 @@ class ClientController extends BaseController
         return $this->sendResponse($clientDiscounts);
     }
 
+    /**
+     * Method returns all active customer discounts.
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getAccountDiscounts(Request $request)
     {
         $client_id = $request->get('user_id');

@@ -25,11 +25,11 @@ Route::group(['namespace' => 'App\Http\Controllers\Api'], function () {
     });
 
     Route::group(['prefix' => 'matrix', 'middleware' => 'auth:api'], function () {
-        Route::get('GetAccountUsers', 'ClientController@getAccountUsers');
-        Route::get('GetAccountDiscountsByPhone', 'ClientController@getAccountDiscountsByPhone');
-        Route::get('GetAccountDiscounts', 'ClientController@getAccountDiscounts');
+        Route::post('GetAccountUsers', 'ClientController@getAccountUsers');
+        Route::post('GetAccountDiscountsByPhone', 'ClientController@getAccountDiscountsByPhone');
+        Route::post('GetAccountDiscounts', 'ClientController@getAccountDiscounts');
 
-        Route::get('GetExpiringDiscounts', 'DiscountController@getExpiringDiscounts');
-        Route::get('GetAllDiscounts', 'DiscountController@getAllDiscounts');
+        Route::post('GetExpiringDiscounts', 'DiscountController@getExpiringDiscounts');
+        Route::post('GetAllDiscounts', 'DiscountController@getAllDiscounts');
     });
 });
